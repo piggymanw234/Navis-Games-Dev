@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navis Games Dev's</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* Snow background */
+    .snow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .snowflake {
+      position: absolute;
+      top: -10px;
+      width: 8px;
+      height: 8px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.9;
+      box-shadow: 0 0 10px white, 0 0 20px white, 0 0 40px white;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(100vh); }
+    }
+
+    /* Header */
+    h1 {
+      position: relative;
+      z-index: 1;
+      color: white;
+      text-shadow: 0 0 10px white, 0 0 20px white, 0 0 40px white;
+      margin-top: 60px;
+      font-size: 4em;
+    }
+
+    /* Buttons */
+    .button {
+      position: relative;
+      z-index: 1;
+      display: inline-block;
+      margin: 40px;
+      padding: 40px 120px;
+      font-size: 2.5em;
+      color: white;
+      border: 4px solid white;
+      border-radius: 15px;
+      text-decoration: none;
+      background-color: red;
+      text-shadow: 0 0 15px red, 0 0 30px red;
+      box-shadow: 0 0 15px red, 0 0 30px red, 0 0 60px red;
+      transition: 0.3s;
+    }
+
+    .button:hover {
+      box-shadow: 0 0 25px red, 0 0 50px red, 0 0 100px red;
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="snow" id="snow"></div>
+
+  <h1>Navis Games Dev's</h1>
+
+  <a href="https://sites.google.com/student.pcsstn.net/navisgame/home" class="button">OG</a>
+  <a href="https://sites.google.com/student.pcsstn.net/navisgamesv2/home" class="button">V2</a>
+  <a href="https://navisgames3.netlify.app/" class="button">V3</a>
+
+  <script>
+    // Snow generator
+    const snowContainer = document.getElementById("snow");
+    const snowflakes = 100;
+
+    for (let i = 0; i < snowflakes; i++) {
+      const snowflake = document.createElement("div");
+      snowflake.className = "snowflake";
+      snowflake.style.left = Math.random() * 100 + "vw";
+      snowflake.style.animationDuration = (4 + Math.random() * 6) + "s";
+      snowflake.style.width = snowflake.style.height = (3 + Math.random() * 6) + "px";
+      snowContainer.appendChild(snowflake);
+
+      // Restart snowflake when it reaches bottom
+      snowflake.addEventListener("animationiteration", () => {
+        snowflake.style.left = Math.random() * 100 + "vw";
+      });
+    }
+  </script>
+</body>
+</html>
